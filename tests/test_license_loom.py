@@ -11,5 +11,5 @@ def test_guards(e):
  c.register_policy('LIC-1','Demo','https://a.example/a','https://b.example/b','["MIT"]')
  with pytest.raises(U): c.register_policy(' lic-1 ','Demo','https://c.example/a','https://d.example/b','["MIT"]')
 def test_forged_validator_rejected(e):
- _,c,q,b,U=e;c.register_policy('LIC-2','Demo','https://a.example/a','https://b.example/b','["MIT"]');bs=['manifest evidence with MIT','lock evidence with MIT'];b.extend(bs+bs);q.extend(['{"status":"INCOMPATIBLE","summary":"GPL is not allowed.","packages":[{"name":"x","license":"GPL-3.0","reason":"Not allowed."}]}','{"status":"COMPLIANT","summary":"forged","packages":[]}'])
+ _,c,q,b,U=e;c.register_policy('LIC-2','Demo','https://a.example/a','https://b.example/b','["MIT"]');b.extend(['manifest evidence with MIT','lock evidence with MIT','manifest evidence with MIT','lock evidence with GPL-3.0'])
  with pytest.raises(U): c.audit_policy('LIC-2')
